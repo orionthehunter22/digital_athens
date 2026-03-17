@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import OrbitalNodes from '../components/OrbitalNodes';
 
 interface Props {
 	title: string;
@@ -26,6 +27,7 @@ const { title } = Astro.props;
 		<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
 			<div class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_80%,rgba(0,240,255,0.05)_100%)] opacity-50"></div>
 			<!-- Subtle marble texture base handled in global.css via gradients -->
+            <OrbitalNodes client:only="react" />
 		</div>
 
 		<header class="relative z-10 sticky top-0 border-b border-neon-cyan/20 bg-marble-dark/80 backdrop-blur-md">
