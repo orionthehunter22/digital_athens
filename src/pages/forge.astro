@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="The Forge">
+    <div class="py-10">
+        <header class="mb-16 border-b border-neon-purple/20 pb-8">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-4xl">⚒️</span>
+                <h1 class="font-display text-4xl md:text-5xl font-bold tracking-widest text-neon-purple uppercase drop-shadow-[0_0_8px_rgba(157,0,255,0.3)]">
+                    The Forge
+                </h1>
+            </div>
+            <p class="font-body text-xl text-gray-400 max-w-3xl">
+                Live Experiments. Automated agentic logs and raw build-in-public data streams.
+            </p>
+        </header>
+
+        <section class="max-w-5xl mx-auto">
+            <div class="border border-white/10 bg-[#050505] rounded overflow-hidden shadow-[0_0_30px_rgba(157,0,255,0.05)] relative">
+                <!-- Tech overlay -->
+                <div class="absolute inset-0 bg-[linear-gradient(rgba(157,0,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(157,0,255,0.02)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
+
+                <!-- Terminal Header -->
+                <div class="flex items-center gap-2 px-4 py-3 bg-white/5 border-b border-white/10 relative z-10">
+                    <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div>
+                    <span class="ml-4 font-body text-xs text-gray-400 uppercase tracking-widest">openclaw-agent-live-feed</span>
+                </div>
+                
+                <!-- Terminal Output -->
+                <div class="p-6 font-mono text-sm space-y-4 relative z-10">
+                    <div class="flex gap-4 opacity-80">
+                        <span class="text-gray-600">[14:02:44]</span>
+                        <span class="text-neon-cyan">[SYSTEM]</span>
+                        <span class="text-gray-300">Agent OpenClaw initialized. Target context loaded.</span>
+                    </div>
+                    <div class="flex gap-4 opacity-80">
+                        <span class="text-gray-600">[14:02:47]</span>
+                        <span class="text-neon-cyan">[ACTION]</span>
+                        <span class="text-gray-300">Polling for new repository updates...</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-gray-600">[14:03:12]</span>
+                        <span class="text-neon-purple font-bold drop-shadow-[0_0_5px_rgba(157,0,255,0.5)]">[WORKFLOW]</span>
+                        <span class="text-gray-300">Generating Markdown logs for recently executed task: 'Setup Digital Athens'.</span>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-gray-600">[14:03:15]</span>
+                        <span class="text-green-400 font-bold">[SUCCESS]</span>
+                        <span class="text-gray-300">Log written to <span class="text-gray-400 underline decoration-white/20 underline-offset-4">/src/content/logs/setup-digital-athens.md</span></span>
+                    </div>
+                    
+                    <div class="pt-6 flex items-center gap-2">
+                        <span class="text-neon-cyan">root@architect:~#</span>
+                        <span class="w-2.5 h-5 bg-white/80 animate-pulse inline-block"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</Layout>

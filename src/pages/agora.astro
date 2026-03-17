@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SearchIsland from '../components/SearchIsland';
+---
+
+<Layout title="The Agora">
+    <div class="py-10">
+        <header class="mb-16 border-b border-neon-cyan/20 pb-8">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="text-4xl">🏛️</span>
+                <h1 class="font-display text-4xl md:text-5xl font-bold tracking-widest text-neon-cyan uppercase">
+                    The Agora
+                </h1>
+            </div>
+            <p class="font-body text-xl text-gray-400 max-w-3xl mb-8">
+                The Marketplace of Ideas. Deep research, NotebookLM syntheses, and comprehensive guides into the agentic future.
+            </p>
+            
+            <SearchIsland client:load />
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Placeholder for Research Content -->
+            <div class="p-6 border border-white/5 bg-[#0a0a0a]/80 backdrop-blur-sm rounded group hover:border-neon-cyan/50 transition-colors duration-300">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="text-xs font-display text-neon-cyan uppercase tracking-widest">Research Note</span>
+                    <span class="text-xs text-gray-500 font-body">OCT 24, 2025</span>
+                </div>
+                <h3 class="font-display text-xl text-[#e0e0e0] mb-2 group-hover:text-neon-cyan transition-colors duration-300">
+                    Local LLM Architectures
+                </h3>
+                <p class="text-gray-400 text-sm font-body mb-6">
+                    A deep dive into running 7B models on M-series chips for decentralized reasoning.
+                </p>
+                <a href="#" class="inline-flex items-center font-display text-xs uppercase tracking-widest text-[#e0e0e0] group-hover:text-neon-cyan transition-colors">
+                    Read Scroll <span class="ml-2">→</span>
+                </a>
+            </div>
+            
+            <div class="p-6 border border-white/5 bg-[#0a0a0a]/80 backdrop-blur-sm rounded group hover:border-neon-cyan/50 transition-colors duration-300 flex flex-col items-center justify-center text-center min-h-[250px]">
+                <span class="text-3xl mb-4 opacity-50">📜</span>
+                <p class="font-display text-sm tracking-widest text-gray-500 uppercase">More Scrolls Uploading...</p>
+            </div>
+        </section>
+    </div>
+</Layout>

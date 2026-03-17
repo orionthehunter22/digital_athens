@@ -1,0 +1,72 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+		<title>{title} | Digital Athens</title>
+	</head>
+	<body class="relative min-h-screen flex flex-col antialiased selection:bg-neon-purple selection:text-white">
+		<!-- Background Grid/Glow Effect -->
+		<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+			<div class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0)_80%,rgba(0,240,255,0.05)_100%)] opacity-50"></div>
+			<!-- Subtle marble texture base handled in global.css via gradients -->
+		</div>
+
+		<header class="relative z-10 sticky top-0 border-b border-neon-cyan/20 bg-marble-dark/80 backdrop-blur-md">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+				<a href="/" class="flex items-center gap-4 group">
+					<div class="w-12 h-12 rounded-full bg-marble-dark border border-neon-cyan flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] group-hover:border-white transition-all duration-300">
+						<span class="font-display text-neon-cyan text-2xl font-bold tracking-wider group-hover:text-white transition-colors duration-300">A</span>
+					</div>
+					<span class="font-display text-2xl font-bold tracking-widest text-[#e0e0e0] drop-shadow-[0_0_2px_rgba(0,240,255,0.3)]">DIGITAL <span class="text-neon-cyan group-hover:text-white transition-colors duration-300">ATHENS</span></span>
+				</a>
+				
+				<nav class="hidden md:flex items-center gap-8">
+					<a href="/agora" class="font-display text-sm uppercase tracking-widest hover:text-neon-cyan hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-neon-cyan hover:after:w-full after:transition-all after:duration-300">Agora</a>
+					<a href="/lyceum" class="font-display text-sm uppercase tracking-widest hover:text-neon-cyan hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-neon-cyan hover:after:w-full after:transition-all after:duration-300">Lyceum</a>
+					<a href="/parthenon" class="font-display text-sm uppercase tracking-widest hover:text-neon-cyan hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-neon-cyan hover:after:w-full after:transition-all after:duration-300">Parthenon</a>
+					<a href="/forge" class="font-display text-sm uppercase tracking-widest hover:text-neon-purple hover:drop-shadow-[0_0_8px_rgba(157,0,255,0.8)] transition-all duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-neon-purple hover:after:w-full after:transition-all after:duration-300">Forge</a>
+				</nav>
+
+                <!-- Mobile menu button (visual only for now) -->
+                <button class="md:hidden flex flex-col gap-[6px] p-2">
+                    <span class="w-6 h-[2px] bg-neon-cyan block"></span>
+                    <span class="w-6 h-[2px] bg-neon-cyan block"></span>
+                    <span class="w-6 h-[2px] bg-neon-cyan block"></span>
+                </button>
+			</div>
+		</header>
+
+		<main class="relative z-10 flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+			<slot />
+		</main>
+
+		<footer class="relative z-10 border-t border-neon-purple/20 bg-[#050505] py-12 mt-auto">
+			<div class="max-w-7xl mx-auto px-4 flex flex-col items-center">
+                <div class="w-8 h-8 rounded-full border border-neon-purple/50 flex items-center justify-center mb-6">
+                    <span class="font-display text-neon-purple text-xs">A</span>
+                </div>
+				<p class="font-display text-xs tracking-widest text-[#e0e0e0]/50 uppercase mb-2">
+					Ancient Wisdom. <span class="text-neon-cyan drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]">Agentic Future.</span>
+				</p>
+                <p class="text-[10px] text-gray-600 font-body">BUILD IN PUBLIC // THE ARCHITECT'S PLAYGROUND</p>
+			</div>
+		</footer>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-neon-cyan: #00f0ff;
+  --color-neon-purple: #9d00ff;
+  --color-marble-dark: #0a0a0a;
+  --color-marble-light: #1c1c1c;
+
+  --font-display: 'Orbitron', 'Cinzel', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-marble-dark);
+    color: #e0e0e0;
+    font-family: var(--font-body);
+    background-image: 
+      radial-gradient(circle at 50% 0%, var(--color-marble-light) 0%, transparent 70%),
+      linear-gradient(to bottom, transparent, rgba(0,0,0,0.8));
+    min-height: 100vh;
+  }
+}
