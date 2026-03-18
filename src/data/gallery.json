@@ -1,0 +1,38 @@
+[
+  {
+    "id": "d35d8fed58269335",
+    "title": "Integration Test",
+    "model": "Curl Script",
+    "theme": "Tests",
+    "thumbnail": "⚡",
+    "fullImage": "/gallery/d35d8fed58269335.jpg",
+    "color": "cyan"
+  },
+  {
+    "id": "cyber-athena",
+    "title": "Cyber-Athena",
+    "model": "Midjourney v6",
+    "theme": "Neon Marble Series",
+    "thumbnail": "🎨",
+    "fullImage": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop",
+    "color": "cyan"
+  },
+  {
+    "id": "digital-oracle",
+    "title": "The Digital Oracle",
+    "model": "Stable Diffusion XL",
+    "theme": "Holographic Prophets",
+    "thumbnail": "👁️",
+    "fullImage": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2674&auto=format&fit=crop",
+    "color": "purple"
+  },
+  {
+    "id": "silicon-acropolis",
+    "title": "Silicon Acropolis",
+    "model": "DALL-E 3",
+    "theme": "Future Topography",
+    "thumbnail": "🏛️",
+    "fullImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2670&auto=format&fit=crop",
+    "color": "cyan"
+  }
+]
