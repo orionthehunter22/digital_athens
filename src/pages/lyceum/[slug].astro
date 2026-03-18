@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const tutorialEntries = await getCollection('tutorials');
+  return tutorialEntries.map(entry => ({
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout title={entry.data.title}>
+    <div class="max-w-4xl mx-auto py-10">
+        <!-- Return Link -->
+        <a href="/lyceum" class="inline-flex items-center text-neon-purple font-display text-xs uppercase tracking-widest hover:text-white hover:drop-shadow-[0_0_8px_rgba(157,0,255,0.8)] transition-all duration-300 mb-8 group">
+            <span class="mr-2 transform group-hover:-translate-x-1 transition-transform">←</span> Return to Lyceum
+        </a>
+
+        <!-- Header Section -->
+        <header class="mb-12 border-b border-neon-purple/20 pb-8 relative">
+            <div class="absolute inset-0 bg-gradient-to-l from-neon-cyan/5 to-transparent pointer-events-none -z-10"></div>
+            
+            <div class="flex justify-between items-start mb-6">
+                <span class="px-3 py-1 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 text-[10px] font-display font-bold uppercase tracking-widest rounded-full">
+                    {entry.data.difficulty}
+                </span>
+            </div>
+
+            <h1 class="font-display text-4xl md:text-5xl font-bold tracking-wider text-[#e0e0e0] mb-4 drop-shadow-[0_0_15px_rgba(157,0,255,0.2)]">
+                {entry.data.title}
+            </h1>
+            <p class="font-body text-xl text-gray-400 mb-8 max-w-2xl leading-relaxed">
+                {entry.data.description}
+            </p>
+
+            <div class="flex items-center gap-4 text-sm font-display uppercase tracking-widest text-gray-500 font-bold">
+                <span class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-neon-purple shadow-[0_0_8px_rgba(157,0,255,0.6)]"></span>
+                    {entry.data.readTime}
+                </span>
+                <span>•</span>
+                <span>{entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            </div>
+        </header>
+
+        <!-- Markdown Content Rendering -->
+        <article class="prose prose-invert prose-p:font-body prose-headings:font-display prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl prose-a:text-neon-cyan hover:prose-a:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)] prose-strong:text-white prose-code:text-neon-cyan prose-code:bg-neon-cyan/10 prose-code:px-1 prose-code:rounded prose-pre:bg-[#0a0a0a] prose-pre:border prose-pre:border-white/10 prose-img:rounded-md max-w-none">
+            <Content />
+        </article>
+        
+        <!-- Post Footer -->
+        <footer class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center text-sm font-body text-gray-500">
+            <span>Lesson Concluded</span>
+            <span class="font-mono text-[10px]">VERIFIED // THE ARCHITECT</span>
+        </footer>
+    </div>
+</Layout>

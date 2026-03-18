@@ -1,5 +1,10 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+
+// Fetch all tutorials and sort them by date (oldest to newest for a timeline)
+const allTutorials = await getCollection('tutorials');
+const sortedTutorials = allTutorials.sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 ---
 
 <Layout title="The Lyceum">
@@ -17,48 +22,55 @@ import Layout from '../layouts/Layout.astro';
             </p>
         </header>
 
-        <section class="max-w-4xl mx-auto space-y-8">
-            <!-- Placeholder for Academy Tutorial -->
-            <article class="relative pl-8 md:pl-0">
-                <!-- Timeline Line -->
-                <div class="hidden md:block absolute left-[120px] top-0 bottom-0 w-[1px] bg-neon-cyan/20"></div>
-                
-                <div class="md:flex gap-12 group cursor-pointer">
-                    <!-- Date Column -->
-                    <div class="hidden md:block w-24 flex-shrink-0 text-right pt-2 relative">
-                        <!-- Timeline Dot -->
-                        <div class="absolute right-[-29px] top-4 w-3 h-3 rounded-full bg-marble-dark border-2 border-neon-cyan group-hover:bg-neon-purple group-hover:border-neon-purple group-hover:shadow-[0_0_15px_rgba(157,0,255,0.8)] transition-all duration-500 z-10"></div>
-                        <span class="font-display text-xs text-neon-cyan group-hover:text-neon-purple uppercase tracking-widest transition-colors duration-500 font-bold">Lesson 01</span>
-                    </div>
+        <section class="max-w-4xl mx-auto space-y-12">
+            {sortedTutorials.map((tutorial, index) => (
+                <article class="relative pl-8 md:pl-0">
+                    <!-- Timeline Line (only show if not the last item, or show continuous) -->
+                    {index !== sortedTutorials.length - 1 && (
+                        <div class="hidden md:block absolute left-[120px] top-[40px] bottom-[-48px] w-[1px] bg-neon-cyan/20"></div>
+                    )}
+                    
+                    <a href={`/lyceum/${tutorial.id}`} class="md:flex gap-12 group block">
+                        <!-- Date Column -->
+                        <div class="hidden md:block w-24 flex-shrink-0 text-right pt-2 relative">
+                            <!-- Timeline Dot -->
+                            <div class="absolute right-[-29px] top-4 w-3 h-3 rounded-full bg-marble-dark border-2 border-neon-cyan group-hover:bg-neon-purple group-hover:border-neon-purple group-hover:shadow-[0_0_15px_rgba(157,0,255,0.8)] transition-all duration-500 z-10"></div>
+                            <span class="font-display text-xs text-neon-cyan group-hover:text-neon-purple uppercase tracking-widest transition-colors duration-500 font-bold">
+                                {tutorial.data.date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' })}
+                            </span>
+                        </div>
 
-                    <!-- Content Card -->
-                    <div class="flex-grow p-8 border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl group-hover:border-neon-purple/50 transition-all duration-500 rounded-xl relative overflow-hidden group-hover:-translate-y-1 group-hover:shadow-[0_0_30px_rgba(157,0,255,0.15)]">
-                        <!-- Hover Glow Background -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <!-- Content Card -->
+                        <div class="flex-grow p-8 border border-white/10 bg-[#0a0a0a]/80 backdrop-blur-xl group-hover:border-neon-purple/50 transition-all duration-500 rounded-xl relative overflow-hidden group-hover:-translate-y-1 group-hover:shadow-[0_0_30px_rgba(157,0,255,0.15)]">
+                            <!-- Hover Glow Background -->
+                            <div class="absolute inset-0 bg-gradient-to-br from-neon-purple/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
-                        <!-- Mobile Timeline Dot -->
-                        <div class="md:hidden absolute left-[-37px] top-8 w-3 h-3 rounded-full bg-marble-dark border-2 border-neon-cyan group-hover:bg-neon-purple transition-colors duration-500 z-10"></div>
-                        
-                        <div class="relative z-10">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3 class="font-display text-2xl font-bold text-[#e0e0e0] group-hover:text-neon-cyan transition-colors duration-300">
-                                    Setting Up OpenClaw
-                                </h3>
-                                <span class="px-3 py-1 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 text-[10px] font-display font-bold uppercase tracking-widest rounded-full">Beginner</span>
-                            </div>
-                            <p class="text-gray-400 font-body mb-8 leading-relaxed">
-                                A complete walkthrough on installing and configuring your first autonomous terminal agent on local silicon.
-                            </p>
+                            <!-- Mobile Timeline Dot -->
+                            <div class="md:hidden absolute left-[-37px] top-8 w-3 h-3 rounded-full bg-marble-dark border-2 border-neon-cyan group-hover:bg-neon-purple transition-colors duration-500 z-10"></div>
                             
-                            <div class="flex items-center gap-4 font-display text-[10px] text-gray-500 uppercase tracking-widest font-bold">
-                                <span class="group-hover:text-white transition-colors duration-300">15 Min Read</span>
-                                <span>•</span>
-                                <span class="text-[#e0e0e0] group-hover:text-neon-purple transition-colors duration-300">Start Lesson <span class="ml-1 inline-block group-hover:translate-x-1 transition-transform duration-300">→</span></span>
+                            <div class="relative z-10">
+                                <div class="flex justify-between items-start mb-4">
+                                    <h3 class="font-display text-2xl font-bold text-[#e0e0e0] group-hover:text-neon-cyan transition-colors duration-300">
+                                        {tutorial.data.title}
+                                    </h3>
+                                    <span class="px-3 py-1 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 text-[10px] font-display font-bold uppercase tracking-widest rounded-full whitespace-nowrap ml-4">
+                                        {tutorial.data.difficulty}
+                                    </span>
+                                </div>
+                                <p class="text-gray-400 font-body mb-8 leading-relaxed">
+                                    {tutorial.data.description}
+                                </p>
+                                
+                                <div class="flex items-center gap-4 font-display text-[10px] text-gray-500 uppercase tracking-widest font-bold">
+                                    <span class="group-hover:text-white transition-colors duration-300">{tutorial.data.readTime}</span>
+                                    <span>•</span>
+                                    <span class="text-[#e0e0e0] group-hover:text-neon-purple transition-colors duration-300">Start Lesson <span class="ml-1 inline-block group-hover:translate-x-1 transition-transform duration-300">→</span></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </article>
+                    </a>
+                </article>
+            ))}
         </section>
     </div>
 </Layout>

@@ -24,7 +24,19 @@ const logsCollection = defineCollection({
   }),
 });
 
+const tutorialsCollection = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/tutorials' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.date(),
+    difficulty: z.string(),
+    readTime: z.string(),
+  }),
+});
+
 export const collections = {
   'research': researchCollection,
   'logs': logsCollection,
+  'tutorials': tutorialsCollection,
 };
