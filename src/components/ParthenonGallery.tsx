@@ -107,23 +107,17 @@ const ParthenonGallery: React.FC = () => {
                                 >
                                     {/* Thumbnail Background */}
                                     <div className={`absolute inset-0 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500 ${isCyan ? 'bg-gradient-to-br from-neon-cyan/20 to-transparent' : 'bg-gradient-to-br from-neon-purple/20 to-transparent'}`}></div>
-                                    <div className="w-full h-full bg-[#0a0a0a]/80 backdrop-blur-xl flex flex-col items-center justify-center relative">
-                                        {/* Tech grid background */}
-                                        <div className={`absolute inset-0 bg-[size:20px_20px] ${isCyan ? 'bg-[linear-gradient(rgba(0,240,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,240,255,0.03)_1px,transparent_1px)]' : 'bg-[linear-gradient(rgba(157,0,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(157,0,255,0.03)_1px,transparent_1px)]'}`}></div>
-                                        
+                                    <div className="w-full h-full bg-[#0a0a0a] flex flex-col items-center justify-center relative overflow-hidden">
                                         <img 
                                             src={art.fullImage}
-                                            className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-700 mix-blend-screen"
+                                            className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                                             alt={art.title}
                                         />
-                                        
-                                        <span className="text-6xl z-20 opacity-40 group-hover:opacity-100 group-hover:scale-125 transition-all duration-700 drop-shadow-lg relative">
-                                            {art.thumbnail}
-                                        </span>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/20 to-transparent opacity-90 z-10 pointer-events-none"></div>
                                         
                                         {/* Hover info overlay */}
-                                        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 flex items-center justify-center backdrop-blur-sm">
-                                            <span className={`font-display text-sm tracking-[0.2em] font-bold uppercase px-6 py-2 rounded-full ${isCyan ? 'text-neon-cyan border border-neon-cyan/30' : 'text-neon-purple border border-neon-purple/30'}`}>
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 flex items-center justify-center backdrop-blur-sm">
+                                            <span className={`font-display text-sm tracking-[0.2em] font-bold uppercase px-6 py-2 rounded-full ${isCyan ? 'text-neon-cyan border border-neon-cyan/30 bg-black/50' : 'text-neon-purple border border-neon-purple/30 bg-black/50'}`}>
                                                 Expand
                                             </span>
                                         </div>
@@ -170,14 +164,19 @@ const ParthenonGallery: React.FC = () => {
                             ✕
                         </button>
                         
-                        <div className="aspect-video relative overflow-hidden bg-black flex items-center justify-center">
+                        <div className="relative overflow-hidden bg-black flex items-center justify-center p-4 md:p-8 min-h-[40vh]">
+                            {/* Blurred ambient background */}
+                            <img src={selectedArt.fullImage} className="absolute inset-0 w-full h-full object-cover opacity-30 blur-2xl scale-110" alt="" />
+                            
+                            {/* Main contained image */}
                             <img 
                                 src={selectedArt.fullImage} 
                                 alt={selectedArt.title}
-                                className="w-full h-full object-cover mix-blend-screen"
+                                className="w-full h-auto max-h-[65vh] object-contain relative z-10 drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]"
                             />
-                            <div className={`absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-50 pointer-events-none`}></div>
-                            <div className={`absolute inset-0 bg-neon-${selectedArt.color}/5 mix-blend-overlay pointer-events-none`}></div>
+                            
+                            <div className={`absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent opacity-80 pointer-events-none z-20`}></div>
+                            <div className={`absolute inset-0 bg-neon-${selectedArt.color}/10 mix-blend-overlay pointer-events-none z-20`}></div>
                         </div>
                         
                         <div className="p-8 border-t border-white/10 relative overflow-hidden">

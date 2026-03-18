@@ -1,5 +1,14 @@
 [
   {
+    "id": "55a18f14c1127e9b",
+    "title": "Angels",
+    "model": "Custom Upload",
+    "theme": "User Artifacts",
+    "thumbnail": "⚡",
+    "fullImage": "/gallery/55a18f14c1127e9b.jpeg",
+    "color": "purple"
+  },
+  {
     "id": "d35d8fed58269335",
     "title": "Integration Test",
     "model": "Curl Script",
